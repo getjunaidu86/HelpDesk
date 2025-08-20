@@ -1,0 +1,56 @@
+----------------------------------------
+@@@@@@@ MYSQL SET WITHOUT CPANEL @@@@@@@
+----------------------------------------
+
+@ Start CMD (any user)
+@ Connect to server
+
+	ssh username@host-ip
+
+@ Input password upon request
+@ After successful connection?
+@ In case MySQL not found! 
+@ Install MySQL
+
+	sudo apt update
+	sudo apt install mysql-server
+
+@ The above command will install MySQL database to your server
+@ Wait until installation finished
+@ To enter MySQL command environment
+
+	sudo mysql
+	
+@ Next
+
+	DROP DATABASE report_jg; 
+
+@ (if it existed)
+
+	mysql -u root -p Khalil74163270@;
+	CREATE DATABASE your_database_name;
+	CREATE USER 'root'@'%' IDENTIFIED BY 'Khalil74163270@';
+	GRANT ALL PRIVILEGES ON report_jg.* TO 'root'@'%';
+	exit; (Exit from mysql host)
+	mysql -u root -p report_jg --verbose < ./assets/schema.sql;
+
+----------------------------------------
+@@@@@@@@@@@ APACHE WEB SERVER @@@@@@@@@@
+----------------------------------------
+
+@ In case apache webser not install
+
+	sudo apt update
+	sudo apt install apache2
+
+@ Now, ensure the web root exist
+
+	sudo mkdir -p /var/www/html/
+
+@ Move your files from the current directory uploaded (May be using WinSCP or BitVise FTP manager) to the public accessable directory.
+
+	sudo mv /home/site-file/* /var/www/html/
+	sudo chown -R www-data:www-data /var/www/html/
+	sudo chmod -R 755 /var/www/html/
+
+@ If it exist? just lunch your browser and start the business.
